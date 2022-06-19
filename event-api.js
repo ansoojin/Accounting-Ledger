@@ -8,19 +8,19 @@ router.get('/api/events', async (req, res) => {
     res.status(200).send(eventData)
   }
   else {
-    res.status(500).end({ message: 'Something went wrong' })
+    res.status(500).send({ message: 'Something went wrong' })
   }
 })
 
-router.post('/api/event', (req, res) => {
-  const { title, content, date, amount, username, onBalance } = req.body;
-  const eventData = new event({ title: title, content: content, date: date, amount: amount, username: username, onBalance: onBalance })
+router.post('/api/event', async (req, res) => {
+  const { title, content, date, amount, userName, onBalance } = req.body;
+  const eventData = new event({ title: title, content: content, date: date, amount: amount, userName: userName, onBalance: onBalance })
   await eventData.save((err) => {
     if (err) {
-      res.status(400).end({ message: 'Bad request' })
+      res.status(400).send({ message: 'Bad request' })
     } 
     else {
-      res.status(200).end({ data: eventData })
+      res.status(200).send(eventData)
     }
   })
 })

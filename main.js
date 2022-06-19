@@ -34,7 +34,7 @@ db.on("error", (err) => {
   console.error("connection error:", err)
 })
 
-// API 부분
+// Web server 
 app.use('/static', express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
