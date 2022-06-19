@@ -3,7 +3,13 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/api/events', async (req, res) => {
-  res.send(await event.find({}))
+  const eventData = await event.find({})
+  if (eventData) {
+    res.status(200).send(eventData)
+  }
+  else {
+    res.status(500).end({ message: 'Something went wrong' })
+  }
 })
 
 router.post('/api/event', (req, res) => {
@@ -11,7 +17,7 @@ router.post('/api/event', (req, res) => {
   const eventData = new event({ title: title, content: content, date: date, amount: amount, username: username, onBalance: onBalance })
   await eventData.save((err) => {
     if (err) {
-      res.status(404).end('Bad request')
+      res.status(400).end({ message: 'Bad request' })
     } 
     else {
       res.status(200).end({ data: eventData })
