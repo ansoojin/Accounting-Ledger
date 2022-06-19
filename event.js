@@ -7,7 +7,7 @@ const eventSchema = new Schema({
   title: { type: String, required: true },
   content: { type: String, required: true },
   date: { type: Date, default: Date.now },
-  amount: { type: Int32, required: true },
+  amount: { type: Number, required: true },
   userName: { type: String, required: true },
   onBalance: { type: Boolean, default: true }
 });
