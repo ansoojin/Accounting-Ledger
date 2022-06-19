@@ -1,0 +1,78 @@
+:root {
+    --eng-font: "Gentium Plus", serif;
+    --kor-font: "Nanum Gothic Coding", monospace;
+    --title-font-color: #6d6a6a;
+}
+
+* {
+    text-align: center;
+}
+
+.container {
+    border: solid;
+    width: 25rem;
+    height: 30rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -200px;
+    margin-top: -250px;
+    box-shadow: 8px 8px 7px #bababa;
+}
+
+.container > h2 {
+    margin-top: 3rem;
+    font-family: var(--kor-font);
+}
+
+.input-box {
+    /* background-color: #e3e3e3; */
+    width: 70%;
+    height: 2.5rem;
+    border: none;
+    border-bottom: solid;
+    margin-top: 1rem;
+    border-width: 0.01rem;
+}
+
+input::placeholder {
+    color: var(--title-font-color);
+    font-style: var(--eng-font);
+    text-align: start;
+    font-size: 1rem;
+}
+
+.btn-grad {
+    width: 70%;
+    background-image: linear-gradient(to right, #f47c7c 0%, #fad4d4 51%, #ef9f9f 100%);
+    margin: auto;
+    margin-top: 2rem;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 2.5rem;
+    border: none;
+    display: block;
+}
+
+.btn-grad:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
+
+.forgot {
+    background: none;
+    border: none;
+}
+
+.link {
+    margin-top: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
