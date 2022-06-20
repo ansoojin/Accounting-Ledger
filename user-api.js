@@ -1,4 +1,4 @@
-const user = require('./user');
+const user = require('./user-model');
 const express = require('express');
 const router = express.Router();
 
@@ -9,6 +9,17 @@ router.get('/api/users', async (req, res) => {
   }
   else {
     res.status(500).send({ message: 'Something went wrong' })
+  }
+})
+
+router.get('/api/users/:id', async (req, res) => {
+  const { id } = req.params
+  const userData = await user.findOne( { id: id } )
+  if (userData) {
+    res.status(200).send(userData)
+  }
+  else {
+    res.status(400).send({ message: 'Bad request'})
   }
 })
 
