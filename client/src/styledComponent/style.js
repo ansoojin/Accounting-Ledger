@@ -62,3 +62,44 @@ export const NavBarButton = styled.button`
         color: #ef9f9f;
     }
 `;
+
+export const LoginContainer = styled.div`
+    border: 1px solid black;
+    width: 25rem;
+    height: 30rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -200px;
+    margin-top: -250px;
+    box-shadow: 8px 8px 7px #bababa;
+`;
+
+export const LoginTitle = styled.h2`
+    margin-top: 3rem;
+    font-family: Nanum Gothic Coding, monospace;
+`;
+
+export const CustomizedButton = styled.button`
+    width: 70%;
+    background-image: linear-gradient(to right, #f47c7c 0%, #fad4d4 51%, #ef9f9f 100%);
+    margin: auto;
+    margin-top: 2rem;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 2.5rem;
+    border: none;
+    display: block;
+    cursor: pointer;
+
+    &:hover {
+        background-position: right center;
+        color: #fff;
+        text-decoration: none;
+    }
+`;
