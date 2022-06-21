@@ -5,19 +5,7 @@ const bodyParser = require('body-parser')
 const config = require('./.config/config.json')
 const app = express();
 
-function normalizePort(val) {
-  var port = parseInt(val, 10)
-  if (isNaN(port)) {
-    return val;
-  }
-  if (port >= 0) {
-    return port;
-  }
-  return false;
-}
-
-const port = normalizePort(process.env.PORT || '3000');
-
+const port = process.env.PORT || '3000';
 
 // DB connection
 const mongoURL = `mongodb+srv://jh9485:${config.dbPassword}@cluster0.ujxjemn.mongodb.net/?retryWrites=true&w=majority`;
