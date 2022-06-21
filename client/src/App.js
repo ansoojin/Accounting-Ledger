@@ -8,8 +8,20 @@ import SignUp from "./components/SignUp.js";
 import Profile from "./components/Profile.js";
 import DailyExpenditure from "./components/DailyExpenditure.js";
 import Stats from "./components/Stats.js";
+import axios from "axios";
+import { useEffect } from "react";
 
 function App() {
+    const sendRequest = async () => {
+        const response = await axios.get("http://localhost:8080");
+        console.log(response);
+        console.log(response.data);
+    };
+
+    useEffect(() => {
+        sendRequest();
+    }, []);
+
     return (
         <>
             <NavBar>

@@ -1,13 +1,19 @@
 const express = require("express");
+const cors = require("cors");
+const app = express();
 const path = require("path");
+
+const server = require("http").createServer(app);
+
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const config = require("./.config/config.json");
-const app = express();
 
-const port = process.env.PORT || "5000";
+const port = 8080;
 
-// DB connection
+app.use(cors()); // cors 미들웨어를 삽입합니다.
+
+// // DB connection
 const mongoURL = `mongodb+srv://jh9485:${config.dbPassword}@cluster0.ujxjemn.mongodb.net/?retryWrites=true&w=majority`;
 mongoose.connect(mongoURL, {
     useNewUrlParser: true,
@@ -21,7 +27,8 @@ db.on("error", (err) => {
     console.error("connection error:", err);
 });
 
-// Web server
+// // Web server
+
 app.use("/static", express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -34,6 +41,6 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname + "../client/build/index.html"));
 });
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
+server.listen(8080, () => {
+    console.log("server is running on 8080");
 });
