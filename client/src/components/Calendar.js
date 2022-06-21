@@ -4,10 +4,12 @@ import { weekdayArray } from "../constant/constants.js";
 import { Header, TitleBox, CalendarContainer, CalendarDayContainer, CalendarWeekContainer, CalendarWeekDayContainer, DayButton } from "../styledComponent/style.js";
 import _ from "lodash";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
+import DailyExpenditure from "./DailyExpenditure.js";
 
 function MyCalendar() {
     const [year, changeYear] = useState(2022);
     const [month, changeMonth] = useState(6);
+    let [modal, changeModal] = useState(false);
 
     const startWeekday = moment().year(year).month(month).startOf("month").format("e");
     const endWeekday = moment().year(year).month(month).endOf("month").format("e");
@@ -55,6 +57,7 @@ function MyCalendar() {
                 </TitleBox>
             </Header>
             <CalendarContainer>
+                {modal === true ? <DailyExpenditure /> : null};
                 <CalendarWeekContainer>
                     {weekdayArray.map((weekday, idx) => (
                         <CalendarWeekDayContainer key={idx}>{weekday}</CalendarWeekDayContainer>
@@ -66,7 +69,7 @@ function MyCalendar() {
                         <CalendarDayContainer key={idx}>
                             <DayButton
                                 onClick={(data) => {
-                                    console.log(`${idx + 1} has been clicked`);
+                                    changeModal(modal === true ? false : true);
                                 }}
                             >
                                 {day}

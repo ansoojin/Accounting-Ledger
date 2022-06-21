@@ -74,6 +74,7 @@ export const LoginContainer = styled.div`
     margin-left: -200px;
     margin-top: -250px;
     box-shadow: 8px 8px 7px #bababa;
+    background: white;
 `;
 
 export const LoginTitle = styled.h2`
@@ -182,4 +183,27 @@ export const DayButton = styled.button`
     cursor: pointer;
     margin: 0;
     padding: 0;
+`;
+
+export const DailyExpContainer = styled.div`
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+`;
+
+export const ExpTitle = styled.div`
+    float: left;
+    width: 30%;
+    box-sizing: border-box;
+    margin: 0.2rem 1.4rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid gray;
+`;
+
+export const ExpContent = styled.div`
+    float: left;
+    width: 30%;
+    box-sizing: border-box;
+    margin: 0.5rem 1.4rem;
 `;
