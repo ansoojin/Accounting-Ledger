@@ -22,6 +22,14 @@ class DuplicateError extends Error {
   }
 }
 
+class UnauthorizedError extends Error {
+  constructor() {
+      super();
+      this.status = 401;
+      this.message = "Unauthorized";
+  }
+}
+
 class ServerError extends Error {
   constructor() {
       super();
@@ -33,6 +41,7 @@ class ServerError extends Error {
 module.exports = {
   NotFoundError,
   InputError,
+  UnauthorizedError,
   DuplicateError,
   ServerError
 };

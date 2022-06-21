@@ -3,7 +3,7 @@ const express = require('express')
 const { NotFoundError, InputError, DuplicateError, ServerError } = require("../services/error-handler");
 const router = express.Router()
 
-// GET find a month with userName and date
+// GET find a month document with userName and date
 router.get('/api/months/:userName/:yyyymmdd', (req, res) => {
   const { userName, yyyymmdd } = req.params
   yyyymmdd = yyyymmdd.replace(/(\d{4})(\d{2})(\d{2})/g, '$1-$2-$3');

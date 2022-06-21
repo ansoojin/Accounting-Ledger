@@ -38,8 +38,9 @@ db.on("error", (err) => {
 app.use('/static', express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
-app.use(require("./user-api"))
-app.use(require("./event-api"))
+app.use(require("./user/user-api"))
+app.use(require("./event/event-api"))
+app.use(require("./month/month-api"))
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/public/html/index.html'));

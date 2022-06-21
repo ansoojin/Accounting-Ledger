@@ -1,5 +1,5 @@
 const user = require('./user-model');
-const { NotFoundError, InputError, DuplicateError, ServerError } = require("../services/error-handler");
+const { NotFoundError, InputError, UnauthorizedError, DuplicateError, ServerError } = require("../services/error-handler");
 const express = require('express');
 const router = express.Router();
 
@@ -51,6 +51,20 @@ router.post('/api/user/signup', async (req, res) => {
   })
 })
 
+// POST check valid id and password
+router.post('/api/user/signin', (req, res) => {
+  const { userId, password } = req.body
+  user.findOne({ userId: userId, password: password }, (err, obj) => {
+    if (err) {
+      throw new UnauthorizedError()
+    }
+    else {
+      res.status(200).send({ login : true })
+    }
+  })
+})
+
+// POST check if there is the same userId
 router.post('/api/user/checkid', (req, res) => {
   const { userId } = req.body
   if (userId === undefined) {
@@ -69,6 +83,7 @@ router.post('/api/user/checkid', (req, res) => {
   })
 })
 
+// POST check if there is the same userName
 router.post('/api/user/checkname', (req, res) => {
   const { userName } = req.body
   if (userName === undefined) {
@@ -87,6 +102,7 @@ router.post('/api/user/checkname', (req, res) => {
   })
 })
 
+// POST check if there is the same userMail
 router.post('/api/user/checkmail', (req, res) => {
   const { userMail } = req.body
   if (userMail === undefined) {
@@ -105,6 +121,7 @@ router.post('/api/user/checkmail', (req, res) => {
   })
 })
 
+// PUT change user info
 router.put('/api/user/:id', (req, res) => {
   const { id } = req.params
   const newInfo = req.body
@@ -126,6 +143,7 @@ router.put('/api/user/:id', (req, res) => {
   })
 })
 
+// DELETE delete a user document
 router.delete('/api/user/:id', (req, res) => {
   const { id } = req.params
   user.deleteOne({id : id}, (err) => {
