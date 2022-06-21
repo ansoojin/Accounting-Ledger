@@ -30,4 +30,38 @@ router.post('/api/event', async (req, res) => {
   })
 })
 
+router.put('/api/event/:id', (req, res) => {
+  const { id } = req.params
+  const newInfo = req.body
+  event.findOne({ id : id }, (err, obj) => {
+    if (err) {
+      throw new NotFoundError()
+    }
+    Object.keys(newInfo).forEach((prop) => {
+      obj[prop] = newInfo[prop]
+    })
+    obj.save((err) => {
+      if (err) {
+        throw new InputError();
+      }
+      else {
+        res.status(200).send(obj)
+      }
+    })
+  })
+})
+
+router.delete('/api/event/:id', (req, res) => {
+  const { id } = req.params
+  event.deleteOne({id : id}, (err) => {
+    if (err) {
+      throw new NotFoundError()
+    }
+    else {
+      res.status(200).send({ message: "Delete success"})
+    }
+  })
+})
+
+
 module.exports = router;
