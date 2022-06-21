@@ -72,7 +72,7 @@ router.post('/api/user/checkid', (req, res) => {
   }
   user.findOne({ userId: userId }, (err, obj) => {
     if (err) {
-      throw new ServerError();
+      throw new ServerError()
     }
     if (obj === null) {
       res.send({ available: true })
@@ -91,7 +91,7 @@ router.post('/api/user/checkname', (req, res) => {
   }
   user.findOne({ userName: userName }, (err, obj) => {
     if (err) {
-      throw new ServerError();
+      throw new ServerError()
     }
     if (obj === null) {
       res.send({ available: true })
@@ -120,6 +120,45 @@ router.post('/api/user/checkmail', (req, res) => {
     }
   })
 })
+
+// POST find userId by realName and userMail
+router.post('/api/user/findmyid', (req, res) => {
+  const { realName, userMail } = req.body
+  if (userMail === undefined || realName === undefined) {
+    throw new InputError();
+  }
+  user.findOne({ realName: realName, userMail: userMail }, (err, obj) => {
+    if (err) {
+      throw new ServerError()
+    }
+    else if (obj === null) {
+      res.status(404).send({ message: "Incorrect info"})
+    } 
+    else {
+      res.send({ userId: obj.userId })
+    }
+  })
+})
+
+// POST find password by realName, userId, and userMail
+router.post('/api/user/findmypw', (req, res) => {
+  const { realName, userId, userMail } = req.body
+  if (userMail === undefined || userId === undefined || realName === undefined) {
+    throw new InputError();
+  }
+  user.findOne({ realName: realName, userId: userId, userMail: userMail }, (err, obj) => {
+    if (err) {
+      throw new ServerError()
+    }
+    else if (obj === null) {
+      res.status(404).send({ message: "Incorrect info"})
+    } 
+    else {
+      res.send({ password: obj.password })
+    }
+  })
+})
+
 
 // PUT change user info
 router.put('/api/user/:id', (req, res) => {
