@@ -7,6 +7,7 @@ import PWSearch from "./components/PWSearch.js";
 import SignUp from "./components/SignUp.js";
 import Profile from "./components/Profile.js";
 import DailyExpenditure from "./components/DailyExpenditure.js";
+import Stats from "./components/Stats.js";
 
 function App() {
     return (
@@ -26,6 +27,7 @@ function App() {
                 <Route path="/signup" element={<SignUp />}></Route>
                 <Route path="/profile" element={<Profile />}></Route>
                 <Route path="/daily" element={<DailyExpenditure />}></Route>
+                <Route path="/stats" element={<Stats />}></Route>
             </Routes>
         </>
     );

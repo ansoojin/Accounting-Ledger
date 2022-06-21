@@ -207,3 +207,54 @@ export const ExpContent = styled.div`
     box-sizing: border-box;
     margin: 0.5rem 1.4rem;
 `;
+
+export const StatContainer = styled.div`
+    width: 80vw;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    margin: 3rem 6rem;
+
+    padding: 1rem;
+`;
+
+export const StatChart = styled.div`
+    float: left;
+    width: 25rem;
+    height: 25rem;
+    align-items: center;
+    padding: 1rem 2rem;
+`;
+
+export const StatDetail = styled.div`
+    border: 1px solid black;
+    width: 25rem;
+    height: 25rem;
+    box-shadow: 8px 8px 7px #bababa;
+    float: left;
+`;
+
+export const LeftSummary = styled.div`
+    float: left;
+    width: 40%;
+    height: 2rem;
+    text-align: end;
+`;
+
+export const RightSummary = styled.div`
+    float: right;
+    width: 50%;
+    height: 2rem;
+    text-align: start;
+`;
+
+export const TotalSummary = styled.div`
+    width: 80%;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    margin-left: 1rem;
+    margin-top: 15rem;
+`;
