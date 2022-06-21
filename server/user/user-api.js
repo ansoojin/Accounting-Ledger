@@ -126,4 +126,16 @@ router.put('/api/user/:id', (req, res) => {
   })
 })
 
+router.delete('/api/user/:id', (req, res) => {
+  const { id } = req.params
+  user.deleteOne({id : id}, (err) => {
+    if (err) {
+      throw new NotFoundError()
+    }
+    else {
+      res.status(200).send({ message: "Delete success"})
+    }
+  })
+})
+
 module.exports = router;
