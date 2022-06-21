@@ -23,7 +23,6 @@ router.get('/api/months/:userName/:yyyymmdd', (req, res) => {
 // POST add a month document
 router.post('/api/month', async (req, res) => {
   const { userName, date, targetExpense } = req.body
-  console.log(userName, date, targetExpense)
   const monthData = new month({ userName: userName, date: date, targetExpense: targetExpense })
   await monthData.save((err) => {
     if (err) {
@@ -32,6 +31,26 @@ router.post('/api/month', async (req, res) => {
     else {
       res.status(200).send(monthData)
     }
+  })
+})
+
+// PUT Change a targetExpense in month
+router.put('/api/month/:id', (req, res) => {
+  const { id } = req.params
+  const { targetExpense } = req.body
+  month.findOne({ id : id }, (err, obj) => {
+    if (err) {
+      throw new NotFoundError()
+    }
+    obj.targetExpense = targetExpense
+    obj.save((err) => {
+      if (err) {
+        throw new InputError();
+      }
+      else {
+        res.status(200).send(obj)
+      }
+    })
   })
 })
 
