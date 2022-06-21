@@ -9,7 +9,7 @@ export const CalendarContainer = styled.div`
 export const CalendarWeekContainer = styled.div`
     display: grid;
     width: 80vw;
-    max-width: 1000px;
+    max-width: 800px;
     margin-top: 4rem;
     grid-template-columns: repeat(7, auto);
 `;
@@ -26,7 +26,8 @@ export const CalendarDayContainer = styled.div`
     height: 5rem;
     color: #000;
     text-align: right;
-    padding: 10px;
+    padding: 8px;
+    line-height: 0.55rem;
 `;
 
 export const Header = styled.div`
@@ -102,4 +103,83 @@ export const CustomizedButton = styled.button`
         color: #fff;
         text-decoration: none;
     }
+`;
+
+export const EngTitle = styled.h2`
+    margin-top: 3rem;
+    font-family: Gentium Plus, serif;
+    font-size: 2rem;
+    letter-spacing: 0.4rem;
+`;
+
+export const InputBox = styled.input`
+    text-align: start;
+    width: 70%;
+    height: 2.5rem;
+    border: none;
+    border-bottom: solid;
+    margin-top: 1rem;
+    border-width: 0.01rem;
+`;
+
+export const DupCheckButton = styled.button``;
+
+export const LeftBox = styled.div`
+    float: left;
+    width: 30%;
+    height: 2.5rem;
+    padding-top: 0.5rem;
+    text-align: end;
+`;
+
+export const RightBox = styled.div`
+    float: right;
+    width: 60%;
+    height: 2.5rem;
+    padding-top: 0.5rem;
+    padding-left: 0.5rem;
+    text-align: start;
+`;
+
+export const ModifyButton = styled.button`
+    border-width: 0.1rem;
+    border-radius: 0.2rem;
+    margin-top: 1rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    transition: 0.5s;
+    background-size: 200% auto;
+    box-shadow: 0 0 20px #eee;
+`;
+
+export const LeftInput = styled.input`
+    text-align: left;
+    width: 70%;
+    height: 2.5rem;
+    float: left;
+    border: none;
+    border-bottom: solid;
+    margin-top: 1rem;
+    margin-left: 10%;
+    border-width: 0.01rem;
+`;
+
+export const RightCheckBox = styled.div`
+    box-sizing: border-box;
+    float: right;
+    width: 15%;
+    height: 2.5rem;
+    text-align: start;
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+`;
+
+export const DayButton = styled.button`
+    font-size: 17px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
 `;
