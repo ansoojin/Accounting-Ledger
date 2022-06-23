@@ -64,6 +64,73 @@ export const NavBarButton = styled.button`
     }
 `;
 
+export const LeftBarButton = styled.button`
+    margin-top: 1.5rem;
+    margin-left: 1.5rem;
+    padding: 0.1rem;
+    letter-spacing: 0.2rem;
+    font-size: 1.2rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+
+    &:hover {
+        color: #ef9f9f;
+    }
+`;
+
+styled.body`
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+`;
+
+export const Section = styled.div`
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+`;
+
+export const LeftMenu = styled.button`
+    flex: 0.75;
+
+    margin-top: 2rem;
+    margin-left: 1rem;
+    letter-spacing: 0.2rem;
+    font-size: 1.2rem;
+
+    border: none;
+    background: none;
+    cursor: pointer;
+
+    &:hover {
+        color: #ef9f9f;
+    }
+`;
+
+export const BlankBar = styled.div`
+    flex: 7.5;
+    line-height: 2.75;
+`;
+
+export const ProfileNavBar = styled.button`
+    flex: 0.75;
+
+    margin-top: 2rem;
+    margin-right: 1.5rem;
+    letter-spacing: 0.2rem;
+    font-size: 1.2rem;
+
+    border: none;
+    background: none;
+    cursor: pointer;
+
+    &:hover {
+        color: #ef9f9f;
+    }
+`;
+
 export const LoginContainer = styled.div`
     border: 1px solid black;
     width: 25rem;
@@ -123,8 +190,6 @@ export const InputBox = styled.input`
     border-width: 0.01rem;
 `;
 
-export const DupCheckButton = styled.button``;
-
 export const LeftBox = styled.div`
     float: left;
     width: 30%;
@@ -142,16 +207,22 @@ export const RightBox = styled.div`
     text-align: start;
 `;
 
+export const RightInput = styled.input`
+    float: right;
+    width: 57%;
+    height: 1.5rem;
+    padding-top: 0.2rem;
+    padding-left: 0.5rem;
+    text-align: start;
+`;
+
 export const ModifyButton = styled.button`
+    width: 25%;
     border-width: 0.1rem;
     border-radius: 0.2rem;
-    margin-top: 1rem;
+    margin-top: 5rem;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
-    cursor: pointer;
-    transition: 0.5s;
-    background-size: 200% auto;
-    box-shadow: 0 0 20px #eee;
 `;
 
 export const LeftInput = styled.input`
@@ -257,4 +328,13 @@ export const TotalSummary = styled.div`
     justify-content: center;
     margin-left: 1rem;
     margin-top: 15rem;
+`;
+
+export const Modal = styled.div`
+    margin-top: 2rem;
+    padding: 2rem;
+    background-color: #eee;
+    width: 50%;
+    height: 10rem;
+    margin: auto;
 `;

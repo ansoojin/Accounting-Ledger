@@ -1,15 +1,17 @@
 import moment from "moment";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { weekdayArray } from "../constant/constants.js";
 import { Header, TitleBox, CalendarContainer, CalendarDayContainer, CalendarWeekContainer, CalendarWeekDayContainer, DayButton } from "../styledComponent/style.js";
 import _ from "lodash";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import DailyExpenditure from "./DailyExpenditure.js";
+import axios from "axios";
 
 function MyCalendar() {
     const [year, changeYear] = useState(2022);
     const [month, changeMonth] = useState(6);
     let [modal, changeModal] = useState(false);
+    const [events, setEvents] = useState([]);
 
     const startWeekday = moment().year(year).month(month).startOf("month").format("e");
     const endWeekday = moment().year(year).month(month).endOf("month").format("e");
@@ -27,6 +29,16 @@ function MyCalendar() {
     const decreaseYear = () => {
         changeYear(year - 1);
         changeMonth(12);
+    };
+
+    const EventByUser = () => {
+        useEffect(() => {
+            axios.get("http://localhost:8080/api/events").then((res) => {
+                setEvents(res.data);
+                console.log("response data");
+                console.log(res.data);
+            });
+        });
     };
 
     return (
@@ -57,7 +69,7 @@ function MyCalendar() {
                 </TitleBox>
             </Header>
             <CalendarContainer>
-                {modal === true ? <DailyExpenditure /> : null};
+                {modal === true ? <DailyExpenditure /> : null}
                 <CalendarWeekContainer>
                     {weekdayArray.map((weekday, idx) => (
                         <CalendarWeekDayContainer key={idx}>{weekday}</CalendarWeekDayContainer>
