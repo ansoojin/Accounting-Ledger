@@ -1,0 +1,10 @@
+.img-box {
+    top: 400px;
+    margin-top: 1px;
+}
+
+.img-box img {
+    display: block;
+    margin: auto;
+    max-width: 80%;
+}
