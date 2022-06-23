@@ -18,10 +18,23 @@ router.get('/api/events', (req, res) => {
   })
 })
 
+// GET Get events by userId
+router.get('/api/events/:userid', async (req, res) => {
+  const { userid } = req.params
+  try {
+    const userData = await event.find({ userId : userid }).sort({date : 1})
+    if (userData) {
+      res.status(200).send(userData)
+    }
+  } catch (err) {
+    throw new ServerError();
+  }
+})
+
 // POST Add an event to database
 router.post('/api/event', async (req, res) => {
-  const { title, content, date, amount, userName, onBalance } = req.body;
-  const eventData = new event({ title: title, content: content, date: date, amount: amount, userName: userName, onBalance: onBalance })
+  const { title, content, date, amount, userId, onBalance } = req.body;
+  const eventData = new event({ title: title, content: content, date: date, amount: amount, userId: userId, onBalance: onBalance })
   await eventData.save((err) => {
     if (err) {
       throw new InputError();

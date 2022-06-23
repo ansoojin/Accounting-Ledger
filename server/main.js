@@ -41,6 +41,6 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname + "../client/build/index.html"));
 });
 
-server.listen(8080, () => {
+server.listen(port, () => {
     console.log("server is running on 8080");
 });
