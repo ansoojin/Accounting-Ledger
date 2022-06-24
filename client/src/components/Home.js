@@ -1,23 +1,5 @@
-import {
-    BouncyDiv,
-    Bounce,
-    FadeDiv,
-    RotateDemo,
-    LandingPage,
-    WrapImage,
-    HomeText,
-    BackgroundWrap1,
-    BackgroundWrap2,
-    BackgroundWrap3,
-    BackgroundWrap4,
-    BackgroundWrap5,
-    BackgroundWrap6,
-    Content,
-    Text,
-} from "../styledComponent/animation";
+import { BackgroundWrap1, BackgroundWrap2, BackgroundWrap3, BackgroundWrap4, BackgroundWrap5, BackgroundWrap6, Content, Text } from "../styledComponent/animation";
 import { CustomizedButton } from "../styledComponent/style";
-import { useRef, useCallback, useEffect } from "react";
-import Introduce from "./Demo";
 import Fade from "react-reveal/Fade";
 import { Link } from "react-router-dom";
 
