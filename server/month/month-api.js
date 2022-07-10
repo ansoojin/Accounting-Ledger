@@ -3,10 +3,13 @@ const express = require('express')
 const { NotFoundError, InputError, DuplicateError, ServerError } = require("../services/error-handler");
 const router = express.Router()
 
-// GET find a month document with userName and date
+// GET find a month column with userName and date
 router.get('/api/months/:userName/:yyyymmdd', (req, res) => {
-  const { userName, yyyymmdd } = req.params
+  const { userName, yyyymmdd } = req.params;
+
+  //yyyymmdd를 yyyy-mm-dd로 바꿔줌
   yyyymmdd = yyyymmdd.replace(/(\d{4})(\d{2})(\d{2})/g, '$1-$2-$3');
+  
   month.findone({ userName: userName, date: yyyymmdd}, (err, monthData) => {
     if (err) {
       throw new ServerError();
@@ -20,7 +23,7 @@ router.get('/api/months/:userName/:yyyymmdd', (req, res) => {
   })
 })
 
-// POST add a month document
+// POST add a month column
 router.post('/api/month', async (req, res) => {
   const { userName, date, targetExpense } = req.body
   const monthData = new month({ userName: userName, date: date, targetExpense: targetExpense })

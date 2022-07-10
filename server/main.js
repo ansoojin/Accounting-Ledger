@@ -2,13 +2,10 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const path = require("path");
-
 const server = require("http").createServer(app);
-
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const config = require("./.config/config.json");
-
 const port = 8080;
 
 app.use(cors()); // cors 미들웨어를 삽입합니다.
@@ -28,8 +25,6 @@ db.on("error", (err) => {
 });
 
 // // Web server
-
-app.use("/static", express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(require("./user/user-api"));
