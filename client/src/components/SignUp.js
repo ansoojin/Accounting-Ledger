@@ -42,7 +42,7 @@ function SignUp() {
 
   // 영문자로 시작하는 영문자 또는 숫자 6 ~ 12자 
   const validateId = (id) => {
-    var regExp = /^[a-z]+[a-z0-9]{5,11}$/g;
+    var regExp = /^[a-z][a-z0-9]{5,11}$/g;
     return regExp.test(id);
   };
 
