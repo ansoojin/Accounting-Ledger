@@ -133,12 +133,12 @@ export const ProfileNavBar = styled.button`
 
 export const LoginContainer = styled.div`
     border: 1px solid black;
-    width: 25rem;
+    width: 40rem;
     height: 30rem;
     position: absolute;
     left: 50%;
     top: 50%;
-    margin-left: -200px;
+    margin-left: -300px;
     margin-top: -250px;
     box-shadow: 8px 8px 7px #bababa;
     background: white;
@@ -227,7 +227,7 @@ export const ModifyButton = styled.button`
 
 export const LeftInput = styled.input`
     text-align: left;
-    width: 70%;
+    width: 75%;
     height: 2.5rem;
     float: left;
     border: none;
@@ -240,11 +240,10 @@ export const LeftInput = styled.input`
 export const RightCheckBox = styled.div`
     box-sizing: border-box;
     float: right;
-    width: 15%;
-    height: 2.5rem;
+    width: 10%;
+    height: 2rem;
     text-align: start;
-    margin-top: 1rem;
-    padding-top: 0.5rem;
+    margin-top: 1.8rem;
 `;
 
 export const DayButton = styled.button`
