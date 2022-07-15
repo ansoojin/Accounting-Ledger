@@ -60,7 +60,7 @@ router.post("/api/user/signin", (req, res) => {
     if (err) {
       throw new UnauthorizedError();
     } else {
-      res.status(200).send({ login: true });
+      res.status(200).send({ login: "true" });
     }
   });
 });
@@ -112,9 +112,9 @@ router.post("/api/user/checkmail", (req, res) => {
       throw new ServerError();
     }
     if (obj === null) {
-      res.send({ available: true });
+      res.send({ available: "true" });
     } else {
-      res.send({ available: false });
+      res.send({ available: "false" });
     }
   });
 });

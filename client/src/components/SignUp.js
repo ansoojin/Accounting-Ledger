@@ -13,8 +13,11 @@ function SignUp() {
   const [nameColor, changeNameColor] = useState("grey");
   const [idColor, changeIdColor] = useState("grey");
   const [nickColor, changeNickColor] = useState("grey");
+  const [mailColor, changeMailColor] = useState("grey");
   const [pwColor, changePwColor] = useState("grey");
   const [pwColor2, changePwColor2] = useState("grey");
+  const [accountColor, changeAccountColor] = useState("grey");
+
 
   const [values, setValues] = useState({
     id: "",
@@ -22,10 +25,9 @@ function SignUp() {
     userName: "",
     password: "",
     password2: "",
+    balance: "",
+    userMail: "",
   });
-
-  const [accountColor, changeAccountColor] = useState("grey");
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues((prevValues) => ({
@@ -34,6 +36,38 @@ function SignUp() {
     }));
   };
 
+  const handleSubmit = () => {
+    const colors = [nameColor, idColor, nickColor, pwColor, pwColor2, mailColor];
+    let badCount = 0;
+
+    colors.forEach((color) => {
+      if (color === 'grey' && !badCount) {
+        alert("유효하지 않은 입력이 존재합니다");
+        badCount++;
+      }
+    })
+
+    if (badCount) return ;
+
+    fetch("http://localhost:8080/api/user/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        realName: values.name,
+        userId: values.id,
+        userName: values.userName,
+        password: values.password,
+        balance: values.balance,
+        userMail: values.userMail,
+      }),
+    }).then((res) => {
+       if (res.ok) alert("가입이 완료되었습니다.");
+       else alert("오류가 발생했습니다.");
+      window.location.href = 'http://localhost:8080/';
+    })
+  }
   const validateName = (e) => {
     const nameCheck = /^[가-힣]{2,4}$/; // 한글 2~4자 정규식
     if (nameCheck.test(e.target.value)) changeNameColor("green");
@@ -58,11 +92,16 @@ function SignUp() {
     return regExp.test(password);
   }
 
+  const validateMail = (email) => {
+    var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/g;
+    return regExp.test(email);
+  }
+
   return (
-    <LoginContainer style={{ height: "50rem", width: "43rem" }}>
+    <LoginContainer style={{ height: "40rem", width: "43rem" }}>
       <EngTitle>Welcome</EngTitle>
 
-      <div style={{ width: "90%", margin: "auto" }}>
+      <div style={{ width: "90%", margin: "auto", height: "25rem" }}>
         <LeftInput
           name="name"
           value={values.name}
@@ -143,6 +182,39 @@ function SignUp() {
           </IconContext.Provider>
         </RightCheckBox>
         <LeftInput
+          type="email"
+          value={values.userMail}
+          name="userMail"
+          placeholder="이메일을 입력해주세요"
+          onChange={handleChange}
+          onBlur={() => {
+            fetch("http://localhost:8080/api/user/checkmail", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                userMail: values.userMail,
+              }),
+            }).then((res) => (res.json())
+            .then((json) => {
+              if (json.available === 'true' && validateMail(values.userMail)) {
+                changeMailColor("green");
+              } else if (json.available === 'false' && validateMail(values.userMail)) {
+                alert("중복된 이메일이 존재합니다.");
+                changeMailColor("grey");
+              } else {
+                changeMailColor("grey");
+              }
+            }))
+          }}
+        ></LeftInput>
+        <RightCheckBox>
+          <IconContext.Provider value={{ color: `${mailColor}` }}>
+            <FiCheckCircle />
+          </IconContext.Provider>
+        </RightCheckBox>
+        <LeftInput
           type="password"
           value={values.password}
           name="password"
@@ -181,10 +253,18 @@ function SignUp() {
           </IconContext.Provider>
         </RightCheckBox>
         <LeftInput
-          type="text"
+          type="number"
+          name="balance"
+          value={values.balance}
           placeholder="현재 계좌 잔액을 입력해주세요"
-          onChange={() => {
-            changeAccountColor("green");
+          onChange={handleChange}
+          onBlur={() => {
+            if (isNaN(values.balance)) {
+              alert("계좌를 숫자로 입력해주세요");
+              changeAccountColor("grey");
+            } else {
+              changeAccountColor("green");
+            }
           }}
         ></LeftInput>
         <RightCheckBox>
@@ -192,6 +272,9 @@ function SignUp() {
             <FiCheckCircle />
           </IconContext.Provider>
         </RightCheckBox>
+      </div>
+      <div>
+        <CustomizedButton style={{width:"50%", height:"3rem"}} onClick={handleSubmit}>Sign up</CustomizedButton>
       </div>
     </LoginContainer>
   );

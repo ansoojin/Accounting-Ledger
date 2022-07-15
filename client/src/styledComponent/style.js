@@ -133,7 +133,7 @@ export const ProfileNavBar = styled.button`
 
 export const LoginContainer = styled.div`
     border: 1px solid black;
-    width: 100rem;
+    width: 40rem;
     height: 30rem;
     position: absolute;
     left: 50%;
