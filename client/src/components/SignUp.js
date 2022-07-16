@@ -8,7 +8,6 @@ import {
 import { FiCheckCircle } from "react-icons/fi";
 import { IconContext } from "react-icons/lib";
 import { useState } from "react";
-import e from "express";
 function SignUp() {
   const [input, setInput] = useState(false);
   const [nameColor, changeNameColor] = useState("grey");
